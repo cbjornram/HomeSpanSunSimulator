@@ -10,7 +10,9 @@ Since HomeKit does not have an easy to use way of slowly dimming a light on over
 192.168.1.32/set?time=07:30
 ```
 
-An iOS Shortcut has been created to simplify the process. When the shortcut is run, it will ask for a desired wake up time and then set both an alarm in the iOS alarm app and send an HTTP GET request to the ESP32. The shortcut will soon be linked to from this README page.
+An iOS Shortcut has been created to simplify the process. When the shortcut is run, it will ask for a desired wake up time and then set both an alarm in the iOS alarm app and send an HTTP GET request to the ESP32. The shortcut is available on the following link:
+
+[https://www.icloud.com/shortcuts/2e953cb21c0745d8855f180ee2dba349](https://www.icloud.com/shortcuts/2e953cb21c0745d8855f180ee2dba349)
 
 Even if the ESP32 is doing the sun simulation by itself, all LED strip values are being reported back to Home so the Home app always show the current state of the accessory even when the simulation is running. When the simulation is done (at the set alarm time), the Sun Simulation accessory is automatically turned off.
 
