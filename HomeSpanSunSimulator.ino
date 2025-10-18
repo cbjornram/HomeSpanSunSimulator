@@ -1,7 +1,8 @@
 
-#define NEOPIXEL_RGB_PIN  27                    // Set pin for LED Strip.
+#define NEOPIXEL_RGB_PIN  27                    // Set pin for LED strip.
+#define NEOPIXEL_COUNT    300                   // Set number of LEDs in the LED strip.
 #define TIME_ZONE         "UTC-2:00"            // Set time zone according to the Proleptic Format for TZ. See https://sourceware.org/glibc/manual/latest/html_node/Proleptic-TZ.html for examples.
-#define NTP_SERVER        "pool.ntp.org"       // Optional: Set desired NTP server.
+#define NTP_SERVER        "pool.ntp.org"        // Optional: Set desired NTP server.
  
 #include "HomeSpan.h"
 #include <WebServer.h>
@@ -80,7 +81,7 @@ void setup() {
     new Service::AccessoryInformation();
       new Characteristic::Name("Pixel LEDS");
       new Characteristic::Identify();
-    leds=new NeoPixel_RGB(NEOPIXEL_RGB_PIN,300);                       // create 8-LED NeoPixel RGB Strand with full color control
+    leds=new NeoPixel_RGB(NEOPIXEL_RGB_PIN,NEOPIXEL_COUNT);
 
   new SpanAccessory();
     new Service::AccessoryInformation();
