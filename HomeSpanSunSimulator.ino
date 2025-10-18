@@ -1,7 +1,7 @@
 
 #define NEOPIXEL_RGB_PIN  27                    // Set pin for LED Strip.
 #define TIME_ZONE         "UTC-2:00"            // Set time zone according to the Proleptic Format for TZ. See https://sourceware.org/glibc/manual/latest/html_node/Proleptic-TZ.html for examples.
-#define NTP_SERVER        "192.168.178.2"       // Optional: Set desired NTP server.
+#define NTP_SERVER        "pool.ntp.org"       // Optional: Set desired NTP server.
  
 #include "HomeSpan.h"
 #include <WebServer.h>
