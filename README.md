@@ -1,6 +1,6 @@
 # HomeSpan Sun Simulator Wake Up Light
 
-This project uses an ESP32, NeoPixels (or similar addressable LED strips), and HomeSpan to create a HomeKit enabled sun simulation wake up light. In Home, two accessories are added where the first one controls the LED strip as any other RGB enabled light, and the other is an on/off switch if the sun simulation should be active or not. When the sun simulation switch is toggled, nothing visible happens to the LED strip until half an hour before the set alarm time.
+This project uses an ESP32, NeoPixels (or similar addressable LED strips), and [HomeSpan](https://github.com/HomeSpan/HomeSpan) to create a HomeKit enabled sun simulation wake up light. In Home, two accessories are added where the first one controls the LED strip as any other RGB enabled light, and the other is an on/off switch if the sun simulation should be active or not. When the sun simulation switch is toggled, nothing visible happens to the LED strip until half an hour before the set alarm time.
 
 ## Setting an Alarm
 
