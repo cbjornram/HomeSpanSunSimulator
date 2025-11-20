@@ -161,11 +161,21 @@ void setupWeb(int count){
 
     String response = "<html><head><title>Sun Simulation</title><meta http-equiv='refresh' content = '3; url=/'/></head>";
     response += "<body>Sun simulation is: ";
-    response += String(sunSimulation->power->getVal());
-    response += ". Alarm set to: ";
+    if (sunSimulation->power->getVal()) {
+      response += "enabled";
+    } else {
+      response += "disabled";
+    }
+    response += ".<br>Alarm set to: ";
     response += String(sunSimulation->alarmHour);
     response += ":";
     response += String(sunSimulation->alarmMinute);
+    response += ".<br>Time is: ";
+    struct tm currentTime;
+    getLocalTime(&currentTime);
+    response += String(currentTime.tm_hour);
+    response += ":";
+    response += String(currentTime.tm_min);
     response += ".</body></html>";
 
     webServer.send(200, "text/html", response);
