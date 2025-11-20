@@ -46,14 +46,19 @@ struct DEV_LED : Service::LightBulb {
   SpanCharacteristic *power;
   int alarmHour;
   int alarmMinute;
+  int lastUpdatedSimulationTime;
   
   DEV_LED(int alarmHour, int alarmMinute) : Service::LightBulb(){
     power=new Characteristic::On();
     this->alarmHour=alarmHour;
     this->alarmMinute=alarmMinute;
+    this->lastUpdatedSimulationTime=0;
   }
 
-  boolean update(){            
+  boolean update(){
+    if (this->power->getVal() == false && this->lastUpdatedSimulationTime != 0){
+      this->lastUpdatedSimulationTime = 0;
+    }            
     return(true);  
   }
 };
@@ -181,7 +186,7 @@ void runSunSimulation() {
     int currentTimeInMinutes = currentTime.tm_hour*60 + currentTime.tm_min;
 
     // If within simulation window, run simulation
-    if(alarmInMinutes - currentTimeInMinutes <= 30 && currentTimeInMinutes > lastUpdatedSimulationTime && alarmInMinutes >= currentTimeInMinutes){
+    if(alarmInMinutes - currentTimeInMinutes <= 30 && currentTimeInMinutes > sunSimulation->lastUpdatedSimulationTime && alarmInMinutes >= currentTimeInMinutes){
       if(leds->power.getVal() == false){
         leds->H.setVal(30);
         leds->power.setVal(true);
@@ -193,12 +198,13 @@ void runSunSimulation() {
       leds->S.setVal(80+(alarmInMinutes-currentTimeInMinutes)/3);
 
       leds->update();
-      lastUpdatedSimulationTime = currentTimeInMinutes;
+      sunSimulation->lastUpdatedSimulationTime = currentTimeInMinutes;
     }
 
     if(alarmInMinutes == currentTimeInMinutes){
       sunSimulation->power->setVal(false);
       sunSimulation->update();
+      sunSimulation->lastUpdatedSimulationTime = 0;
     }
   }
 }
