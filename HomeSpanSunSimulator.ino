@@ -68,9 +68,6 @@ struct DEV_LED : Service::LightBulb {
 NeoPixel_RGB *leds;
 DEV_LED *sunSimulation;
 WebServer webServer(80);
-//int alarmHour = 07;
-//int alarmMinute = 00;
-int lastUpdatedSimulationTime = 0;
 
 void setup() {
   
@@ -132,7 +129,6 @@ void setupWeb(int count){
   // Set alarm time. Expected format is "[IP Address]/set?time=07:30"
   webServer.on("/set", []() {
 
-    //int time=atoi(webServer.arg(0).c_str());
     String time = webServer.arg(0).c_str();
     String hour, minute;
     hour = time.substring(0, 2);
